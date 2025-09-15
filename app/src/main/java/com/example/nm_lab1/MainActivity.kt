@@ -33,8 +33,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NM_lab1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {
-
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    DemoScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
