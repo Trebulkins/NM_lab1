@@ -38,10 +38,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     NM_lab1Theme {
-        Greeting("Android")
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            Greeting("Android", modifier = Modifier.padding(innerPadding))
+        }
     }
 }
