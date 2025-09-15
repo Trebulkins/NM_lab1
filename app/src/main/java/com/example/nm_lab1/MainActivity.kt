@@ -14,13 +14,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -66,12 +69,13 @@ fun DemoScreen(modifier: Modifier = Modifier) {
     val handlePositionChange = { position : Float ->
         sliderPosition = position
     }
+    val message = remember{mutableStateOf("Welcome to Compose")}
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        DemoText(message = "Welcome to Compose", fontSize = sliderPosition)
+        DemoText(message = message.value, fontSize = sliderPosition)
         Spacer(modifier = Modifier.height(150.dp))
         DemoSlider(
             sliderPosition = sliderPosition,
@@ -80,6 +84,16 @@ fun DemoScreen(modifier: Modifier = Modifier) {
         Text(
             style = MaterialTheme.typography.headlineMedium,
             text = sliderPosition.toInt().toString() + "sp"
+        )
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(
+            style = MaterialTheme.typography.headlineSmall,
+            text = "Изменить текст"
+        )
+        TextField(
+            value = message.value,
+            textStyle = TextStyle(fontSize = 25.sp),
+            onValueChange = {newText -> message.value = newText}
         )
     }
 
